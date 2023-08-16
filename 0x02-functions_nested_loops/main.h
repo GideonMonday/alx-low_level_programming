@@ -3,6 +3,7 @@
 #include <stdio.h>
 
 void print_to_98(int n);
+int add(int a, int b);
 int print_last_digit(int);
 void print_alphabet(void);
 int _putchar(char c);
