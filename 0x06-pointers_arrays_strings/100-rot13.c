@@ -1,28 +1,29 @@
+#include "main.h"
 #include <stdio.h>
 
 /**
- * print_diagsums - print the sum of the two
- *                 diagonals of a square matrix
- *                 of integers.
- * @a: input pointer
- * @size: size of the matrix
- *
- * Return: nothing
-*/
+ * rot13 - encoder rot13
+ * @s: pointer to string params
+ * Return: *s
+ */
 
-void print_diagsums(int *a, int size)
+char *rot13(char *s)
 {
-	int i, S1, S2;
+	int i;
+	int j;
+	char data1[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+	char datarot[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
 
-	S1 = 0;
-	S2 = 0;
-
-	for (i = 0; i < (size * size); i++)
+	for (i = 0; s[i] != '\0'; i++)
 	{
-		if (i % (size + 1) == 0)
-			S1 += a[i];
-		if (i % (size - 1) == 0 && i != 0 && i < size * size - 1)
-			S2 += a[i];
+		for (j = 0; j < 52; j++)
+		{
+			if (s[i] == data1[j])
+			{
+				s[i] = datarot[j];
+				break;
+			}
+		}
 	}
-	printf("%d, %d\n", S1, S2);
+	return (s);
 }
