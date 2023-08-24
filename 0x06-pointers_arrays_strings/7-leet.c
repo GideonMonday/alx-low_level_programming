@@ -1,37 +1,45 @@
+#include <stdio.h>
+#include <stdbool.h>
+#include <string.h>
+#include "main.h"
+
 /**
- * leet - a function that encodes a string into 1337
+ * leet - Encodes a string into "1337".
+ * @str: The input string to encode.
  *
- * @s: string input
+ * Description:
+ *   This function encodes the input string by replacing certain letters
+ *   with their corresponding "1337" character substitutions.
  *
- * Return: @s
-*/
-
-char *leet(char *s)
+ * Prototype: char *leet(char *);
+ * Rules:
+ *   Letters a and A are replaced by 4.
+ *   Letters e and E are replaced by 3.
+ *   Letters o and O are replaced by 0.
+ *   Letters t and T are replaced by 7.
+ *   Letters l and L are replaced by 1.
+ *
+ * Return: The encoded string.
+ */
+char *leet(char *str)
 {
-	int i, c = 0;
-	int sl[] = {97, 101, 111, 116, 108};
-	int ul[] = {65, 69, 79, 84, 76};
-	int n[] = {52, 51, 48, 55, 49};
+	char leet_map[256] = {0};
 
-	/*iterate values in array s*/
-	while (s[c] != '\0')
+	leet_map['a'] = leet_map['A'] = '4';
+	leet_map['e'] = leet_map['E'] = '3';
+	leet_map['o'] = leet_map['O'] = '0';
+	leet_map['t'] = leet_map['T'] = '7';
+	leet_map['l'] = leet_map['L'] = '1';
+
+	int i;
+
+	for (i = 0; str[i] != '\0'; i++)
 	{
-		/**
-		 * loop through array value five times
-		 * to check if the value is equal to
-		 * any small letter in array sl or
-		 * upper letter in array ul and if it
-		 * is replace it with the value in array n
-		*/
-		for (i = 0; i < 5; i++)
+		if (leet_map[(unsigned char)str[i]] != 0)
 		{
-			if (s[c] == sl[i] || s[c] == ul[i])
-			{
-				s[c] = n[i];
-				break;
-			}
+			str[i] = leet_map[(unsigned char)str[i]];
 		}
-		c++;
 	}
-	return (s);
+
+	return (str);
 }

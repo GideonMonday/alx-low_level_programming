@@ -1,6 +1,8 @@
 #ifndef MAIN_H
 #define MAIN_H
 
+void print_buffer(char *b, int size);
+char *rot13(char *);char *rot13(char *);char *rot13(char *);
 char *cap_string(char *);
 char *string_toupper(char *);
 void reverse_array(int *a, int n);

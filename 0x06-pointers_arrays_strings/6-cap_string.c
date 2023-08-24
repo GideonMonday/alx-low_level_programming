@@ -1,47 +1,35 @@
+include "main.h"
 #include <stdio.h>
-#include <stdbool.h>
-#include "main.h"
+#include <string.h>
 
 /**
- * cap_string - Capitalizes all words in a string.
- * @str: The input string to capitalize.
+ * cap_string - Capitalizes words in a string.
+ * @str: The input string to be capitalized.
  *
- * Description:
- *   This function capitalizes the first letter of each word in the given
- *   string, considering certain separators. It also converts subsequent
- *   letters of each word to lowercase.
- *
- * Prototype: char *cap_string(char *);
- * Separators of words: space, tabulation,
- * new line, ,, ;, ., !, ?, ", (, ), {, and }
- *
- * Return: The capitalized string.
+ * Return: A pointer to the modified string.
  */
 char *cap_string(char *str)
 {
-	bool new_word = true;
-	int i;
+	int i, Q;
+	char sp[13] = {' ', '\t', '\n', ',', ';', '.', '!', '?', '"', '(', ')', '{', '}'};
 
 	for (i = 0; str[i]; i++)
 	{
-		if (str[i] == ' ' || str[i] == '\t' || str[i] == '\n' ||
-		    str[i] == ',' || str[i] == ';' || str[i] == '.' ||
-		    str[i] == '!' || str[i] == '?' || str[i] == '"' ||
-		    str[i] == '(' || str[i] == ')' || str[i] == '{' || str[i] == '}')
+
+		if (i == 0 && str[i] >= 'a' && str[i] <= 'z')
 		{
-			new_word = true;
+			str[i] -= 32;
 		}
-		else if (new_word)
+
+		for (Q = 0; Q < 13; Q++)
 		{
-			if (str[i] >= 'a' && str[i] <= 'z')
+			if (str[i] == sp[Q])
 			{
-				str[i] -= ('a' - 'A');
+				if (str[i + 1] >= 'a' && str[i + 1] <= 'z')
+				{
+					str[i + 1] -= 32;
+				}
 			}
-			new_word = false;
-		}
-		else if (str[i] >= 'A' && str[i] <= 'Z')
-		{
-			str[i] += ('a' - 'A');
 		}
 	}
 
